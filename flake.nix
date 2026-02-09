@@ -27,7 +27,7 @@
       vm = import ./system/hosts/vm/config-modules.nix { inherit pkgs; };
     in
     {
-      nixosConfiguration = {
+      nixosConfigurations = {
         pc-main = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs =
