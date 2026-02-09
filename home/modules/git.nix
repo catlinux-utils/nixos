@@ -5,8 +5,8 @@
     enable = true;
     settings = {
       user = {
-        name = "${vars.packages.git.name}";
-        email = "${vars.packages.git.email}";
+        name = "${vars.modules.home-manager.packages.git.name}";
+        email = "${vars.modules.home-manager.packages.git.email}";
       };
       init.defaultBranch = "main";
     };
