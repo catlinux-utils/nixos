@@ -2,24 +2,26 @@
 
 rec {
   user = "cat";
-  flakeLocation = "/home/${user}/github/nixos";
+  initialPassword = "cat";
   networkingHostName = "nixos";
   timezone = "Europe/Warsaw";
   defaultLocale = "pl_PL.UTF-8";
+  flakeLocation = "/home/${user}/github/nixos";
   consoleFont = "Lat2-Terminus16";
-  initialPassword = "";
-  nixExtraOptions = "experimental-features = nix-command flakes";
-  efiSysMountPoint = "/efi";
-  grubDevice = "nodev";
-  configurationLimit = 10;
   modules = {
-    bootloader = {
-      grub.enable = false;
-      systemd-boot.enable = true;
+    desktop-environment = {
+      hyprland = {
+        enable = false;
+      };
     };
     home-manager = {
       packages = {
-        git.enable = true;
+        git = {
+          enable = true;
+          name = "ThePolishCat";
+          email = "damianadam000@gmail.com";
+
+        };
       };
     };
   };

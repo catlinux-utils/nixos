@@ -1,13 +1,12 @@
-{config, pkgs , ...}:
+{ vars, ... }:
 
 {
-    home.username = "cat";
-    home.homeDirectory = "/home/cat";
-    home.stateVersion = "25.11";
-    programs.bash = {
-        enable = true;
-        shellAliases = {
-            btw = "echo hyprland";
-        };
-    };
+  home.username = "${vars.user}";
+  home.homeDirectory = "/home/${vars.user}";
+
+  imports = [
+    ./modules/git.nix
+    ./modules/zsh.nix
+  ];
+  home.stateVersion = "25.11";
 }

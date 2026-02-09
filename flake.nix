@@ -30,9 +30,16 @@
       nixosConfiguration = {
         pc-main = nixpkgs.lib.nixosSystem {
           inherit system;
-
+          specialArgs =
+            let
+              vars = desktop;
+            in
+            {
+              inherit inputs vars;
+            };
           modules = [
             ./system/hosts/pc-main/configuration.nix
+            ./system/default.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -55,6 +62,7 @@
 
           modules = [
             ./system/hosts/vm/configuration.nix
+            ./system/default.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
