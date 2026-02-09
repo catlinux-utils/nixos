@@ -51,7 +51,7 @@
                 {
                   inherit inputs vars;
                 };
-              home-manager.users.${desktop.user} = {
+              home-manager.users.${pc-main.user} = {
                 imports = [ ./home/home.nix ];
               };
             }
