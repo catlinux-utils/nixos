@@ -1,28 +1,77 @@
 {
-    description = "nix";
+  description = "nix";
 
-    inputs = {
-        nixpkgs.url = "nixpkgs/nixos-unstable";
-        home-manager = {
-            url= "github:nix-community/home-manager";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
+  inputs = {
+    nixpkgs.url = "nixpkgs/nixos-unstable";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-    outputs = { self, nixpkgs, home-manager, ... } : {
-         nixosConfigurations.cat = nixpkgs.lib.nixosSystem {
-            system = "x86_64-linux";
-            modules = [
-                ./configuration.nix
-                home-manager.nixosModules.home-manager
+  };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
+
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      };
+
+      pc-main = import ./system/hosts/pc-main/config-modules.nix { inherit pkgs; };
+      vm = import ./system/hosts/vm/config-modules.nix { inherit pkgs; };
+    in
+    {
+      nixosConfiguration = {
+        pc-main = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./system/hosts/pc-main/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs =
+                let
+                  vars = desktop;
+                in
                 {
-                    home-manager = {
-                        useGlobalPkgs = true;
-                        useUserPackages = true;
-                        users.cat = import ./home.nix;
-                        backupFileExtension = "backup";
-                    };
-                }
-            ];
-         };
+                  inherit inputs vars;
+                };
+              home-manager.users.${desktop.user} = {
+                imports = [ ./home/home.nix ];
+              };
+            }
+          ];
+        };
+        vm = nixpkgs.lib.nixosSystem {
+          inherit system;
+
+          modules = [
+            ./system/hosts/vm/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs =
+                let
+                  vars = desktop;
+                in
+                {
+                  inherit inputs vars;
+                };
+              home-manager.users.${vm.user} = {
+                imports = [ ./home/home.nix ];
+              };
+            }
+          ];
+        };
+      };
     };
 }
