@@ -39,7 +39,7 @@
             };
           modules = [
             ./system/hosts/pc-main/hardware-configuration.nix
-            ./system/default.nix
+            ./system/modules.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
@@ -69,7 +69,7 @@
 
           modules = [
             ./system/hosts/vm/hardware-configuration.nix
-            ./system/default.nix
+            ./system/modules.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
