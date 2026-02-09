@@ -5,8 +5,8 @@
     enable = true;
     settings = {
       user = {
-        name = "${vars.git.name}";
-        email = "${vars.git.email}";
+        name = "${vars.packages.git.name}";
+        email = "${vars.packages.git.email}";
       };
       init.defaultBranch = "main";
     };
