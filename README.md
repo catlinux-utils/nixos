@@ -1,10 +1,5 @@
 # nixos
 
-partycje,
+https://github.com/cafetestrest/nixos
 
-```bash
-mkdir /mnt/etc
-cd /mnt/etc
-git clone https://github.com/catlinux-utils/nixos
-nixos-generate-config --root /mnt
-```
+https://github.com/ryan4yin/nix-config
