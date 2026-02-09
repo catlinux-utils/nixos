@@ -32,7 +32,7 @@
           inherit system;
           specialArgs =
             let
-              vars = desktop;
+              vars = pc-main;
             in
             {
               inherit inputs vars;
@@ -46,7 +46,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs =
                 let
-                  vars = desktop;
+                  vars = pc-main;
                 in
                 {
                   inherit inputs vars;
@@ -59,6 +59,13 @@
         };
         vm = nixpkgs.lib.nixosSystem {
           inherit system;
+          specialArgs =
+            let
+              vars = vm;
+            in
+            {
+              inherit inputs vars;
+            };
 
           modules = [
             ./system/hosts/vm/configuration.nix
@@ -69,7 +76,7 @@
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs =
                 let
-                  vars = desktop;
+                  vars = vm;
                 in
                 {
                   inherit inputs vars;
