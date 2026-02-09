@@ -38,7 +38,7 @@
               inherit inputs vars;
             };
           modules = [
-            ./system/hosts/pc-main/configuration.nix
+            ./system/hosts/pc-main/hardware-configuration.nix
             ./system/default.nix
             home-manager.nixosModules.home-manager
             {
@@ -68,7 +68,7 @@
             };
 
           modules = [
-            ./system/hosts/vm/configuration.nix
+            ./system/hosts/vm/hardware-configuration.nix
             ./system/default.nix
             home-manager.nixosModules.home-manager
             {
