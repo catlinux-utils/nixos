@@ -17,8 +17,6 @@ with lib;
       argvSettings = {
         "locale" = "pl";
         "enable-crash-reporter" = false;
-        "crash-reporter-id" = "d68a8d55-43c4-4965-8ff3-66de9ea70427";
-
       };
       profiles.default = {
         userSettings = {
@@ -37,6 +35,8 @@ with lib;
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
           };
+          "update.showReleaseNotes" = false;
+
         };
         extensions = with pkgs.vscode-marketplace; [
           ms-ceintl.vscode-language-pack-pl
