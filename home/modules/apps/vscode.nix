@@ -38,14 +38,21 @@ with lib;
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
           };
         };
-        extensions = [
-          pkgs.vscode-marketplace.ms-ceintl.vscode-language-pack-pl
-          pkgs.vscode-marketplace.bbenoist.nix
-          pkgs.vscode-marketplace.jnoortheen.nix-ide
-          pkgs.vscode-marketplace.esbenp.prettier-vscode
+        extensions = with pkgs.vscode-marketplace; [
+          ms-ceintl.vscode-language-pack-pl
+          esbenp.prettier-vscode
+          eamodio.gitlens
+          donjayamanne.githistory
+          mhutchie.git-graph
 
-          pkgs.vscode-marketplace.theqtcompany.qt-core
-          pkgs.vscode-marketplace.theqtcompany.qt-qml
+          github.copilot
+          github.copilot-chat
+
+          bbenoist.nix
+          jnoortheen.nix-ide
+
+          theqtcompany.qt-core
+          theqtcompany.qt-qml
 
         ];
       };
