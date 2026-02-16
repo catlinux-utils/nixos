@@ -1,0 +1,95 @@
+{
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
+
+with lib;
+
+{
+
+  config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
+
+    programs.hyprlock = {
+      enable = true;
+      settings = {
+        background = [
+          {
+            monitor = "";
+            path = "${../../../config/wallpaper/arch-windows.png}";
+            blur_passes = 2;
+            contrast = 0.8916;
+            brightness = 0.8172;
+            vibrancy = 0.1696;
+            vibrancy_darkness = 0.0;
+          }
+        ];
+        # GENERAL
+        general = [
+          {
+            no_fade_in = false;
+            grace = 0.5;
+            disable_loading_bar = false;
+            ignore_empty_input = true;
+            text_trim = true;
+          }
+        ];
+
+        # INPUT FIELD
+        input-field = [
+          {
+            monitor = "";
+            size = "200, 50";
+            outline_thickness = 1;
+            dots_size = 0.2;
+            dots_spacing = 0.2;
+            dots_center = true;
+            outer_color = "rgba(249,249,249,1)";
+            inner_color = "rgba(0,0,0,1)";
+            font_color = "rgba(249,249,249,1)";
+            fade_on_empty = false;
+            placeholder_text = "Password...";
+            hide_input = false;
+            position = "0, 35";
+            halign = "center";
+            valign = "bottom";
+            font_family = "MesloLGS Nerd Font";
+          }
+        ];
+
+        # TIME
+        label = [
+          {
+            monitor = "";
+            text = "cmd[update:1000] date +'%H:%M'";
+            color = "rgba(249,249,249,1)";
+            font_size = 100;
+            font_family = "MesloLGS Nerd Font";
+            position = "0, 0";
+            halign = "center";
+            valign = "top";
+            shadow_passes = 2;
+            shadow_size = 4;
+            shadow_color = "rgb(0,0,0)";
+            shadow_boost = 0.6;
+          }
+          {
+            monitor = "";
+            text = "cmd[update:1000] date +'%A %-d,%B'";
+            color = "rgba(249,249,249,1)";
+            font_size = 30;
+            font_family = "MesloLGS Nerd Font";
+            position = "0, -170";
+            halign = "center";
+            valign = "top";
+            shadow_passes = 2;
+            shadow_size = 4;
+            shadow_color = "rgb(0,0,0)";
+            shadow_boost = 1.2;
+          }
+        ];
+      };
+    };
+  };
+}
