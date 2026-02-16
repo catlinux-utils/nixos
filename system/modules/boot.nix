@@ -8,6 +8,9 @@
     canTouchEfiVariables = true;
     efiSysMountPoint = "/efi";
   };
+  boot.initrd = {
+    systemd.enable = true;
+  };
   environment.systemPackages = [
     pkgs.efibootmgr
   ];
