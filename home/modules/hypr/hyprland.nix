@@ -163,6 +163,8 @@ with lib;
           force_default_wallpaper = 0;
           allow_session_lock_restore = true;
 
+          initial_workspace_tracking = 2;
+
           background_color = "rgba(0, 0, 0, 1)";
         };
 
