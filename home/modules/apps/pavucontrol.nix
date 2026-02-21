@@ -1,10 +1,17 @@
 {
+  lib,
   pkgs,
+  vars,
   ...
 }:
 
+with lib;
+
 {
-  home.packages = with pkgs; [
-    pavucontrol
-  ];
+  config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
+
+    home.packages = with pkgs; [
+      pavucontrol
+    ];
+  };
 }
