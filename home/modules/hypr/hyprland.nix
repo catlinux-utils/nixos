@@ -21,6 +21,8 @@ with lib;
       rofi
       hyprshot
 
+      glibcLocales
+
     ];
 
     wayland.windowManager.hyprland = {
