@@ -17,9 +17,11 @@ with lib;
       argvSettings = {
         "locale" = "pl";
         "enable-crash-reporter" = false;
+        "password-store" = "gnome-libsecret";
       };
       profiles.default = {
         userSettings = {
+          "update.mode" = "none";
           "window.customTitleBarVisibility" = "auto";
           "window.titleBarStyle" = "custom";
           "workbench.activityBar.location" = "top";
@@ -36,25 +38,29 @@ with lib;
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
           };
           "update.showReleaseNotes" = false;
+          "diffEditor.maxComputationTime" = 0;
+          "editor.unicodeHighlight.ambiguousCharacters" = false;
+          "diffEditor.hideUnchangedRegions.enabled" = true;
 
         };
-        extensions = with pkgs.vscode-marketplace; [
-          ms-ceintl.vscode-language-pack-pl
-          esbenp.prettier-vscode
-          eamodio.gitlens
-          donjayamanne.githistory
-          mhutchie.git-graph
+        extensions =
+          (with pkgs.vscode-marketplace; [
+            ms-ceintl.vscode-language-pack-pl
+            esbenp.prettier-vscode
+            eamodio.gitlens
+            donjayamanne.githistory
+            mhutchie.git-graph
 
-          github.copilot
-          github.copilot-chat
+            bbenoist.nix
+            jnoortheen.nix-ide
 
-          bbenoist.nix
-          jnoortheen.nix-ide
-
-          theqtcompany.qt-core
-          theqtcompany.qt-qml
-
-        ];
+            theqtcompany.qt-core
+            theqtcompany.qt-qml
+          ])
+          ++ (with pkgs.vscode-extensions; [
+            github.copilot
+            github.copilot-chat
+          ]);
       };
     };
   };
