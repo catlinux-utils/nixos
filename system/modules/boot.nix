@@ -6,6 +6,7 @@
 
     kernelPackages = pkgs.linuxPackages_zen;
     initrd.systemd.enable = true;
+    supportedFilesystems = [ "ntfs" ];
 
     loader = {
 
