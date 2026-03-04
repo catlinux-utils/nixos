@@ -12,6 +12,5 @@ with lib;
     duf
     unzip
     p7zip
-    jdk
   ];
 }

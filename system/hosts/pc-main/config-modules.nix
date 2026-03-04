@@ -13,6 +13,9 @@ rec {
         enable = true;
       };
     };
+    ollama = {
+      enable = true;
+    };
     desktop-environment = {
       hyprland = {
         enable = true;
