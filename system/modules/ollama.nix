@@ -1,4 +1,9 @@
-{ lib, vars, ... }:
+{
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
 with lib;
 
 {
