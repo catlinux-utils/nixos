@@ -61,7 +61,7 @@ ShellRoot {
     FileView {
         id: tempLoader
 
-        path: "/sys/class/hwmon/hwmon5/temp3_input"
+        path: "/sys/class/hwmon/hwmon3/temp3_input"
     }
 
     FileView {
