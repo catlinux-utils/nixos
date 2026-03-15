@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 
@@ -18,5 +19,8 @@
     # libjpeg
     # giflib
     # librsvg
+  ];
+  home.sessionPath = [
+    "${config.home.homeDirectory}/.npm-global/bin"
   ];
 }
