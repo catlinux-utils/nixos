@@ -1,0 +1,6 @@
+{ ... }:
+{
+  services.envfs = {
+    enable = true;
+  };
+}
