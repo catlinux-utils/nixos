@@ -13,6 +13,9 @@
       "wheel"
       "networkmanager"
       "gamemode"
+      "wideo"
+      "render"
+      "docker"
     ];
     shell = pkgs.zsh;
     initialHashedPassword = "${vars.initialPassword}";
