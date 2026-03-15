@@ -1,6 +1,7 @@
 { pkgs }:
 
 rec {
+  conf-name = "vm-desktop";
   user = "cat";
   initialPassword = "cat";
   networkingHostName = "nixos";

@@ -1,6 +1,7 @@
 { pkgs }:
 
 rec {
+  conf-name = "pc-main";
   user = "cat";
   initialPassword = "cat";
   networkingHostName = "nixos";
