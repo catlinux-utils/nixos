@@ -22,18 +22,24 @@
   };
 
   #security.polkit.enable = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nixpkgs.config = {
-    allowUnfree = true; # Allow unfree packages
+  nix = {
+    settings = {
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+      auto-optimise-store = true;
+    };
   };
 
-  nixpkgs.overlays = [
-    inputs.nix-vscode-extensions.overlays.default
-  ];
+  nixpkgs = {
+    config = {
+      allowUnfree = true; # Allow unfree packages
+    };
+    overlays = [
+      inputs.nix-vscode-extensions.overlays.default
+    ];
+  };
 
   system.stateVersion = "26.05";
 
