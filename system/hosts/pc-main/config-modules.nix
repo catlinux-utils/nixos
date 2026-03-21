@@ -17,6 +17,9 @@ rec {
     ollama = {
       enable = true;
     };
+    virtualisation = {
+      enable = true;
+    };
     desktop-environment = {
       hyprland = {
         enable = true;
