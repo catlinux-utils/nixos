@@ -25,7 +25,9 @@ with lib;
       rocmOverrideGfx = "10.3.0";
       environmentVariables = {
         OLLAMA_FLASH_ATTENTION = "0";
-        #HSA_OVERRIDE_GFX_VERSION = "10.3.0"; # helps ROCm recognize gfx1030
+        HSA_OVERRIDE_GFX_VERSION = "10.3.0"; # helps ROCm recognize gfx1030
+        HIP_VISIBLE_DEVICES = "0";
+
       };
 
     };
