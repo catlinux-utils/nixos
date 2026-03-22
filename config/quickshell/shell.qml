@@ -58,10 +58,22 @@ ShellRoot {
         path: "/proc/meminfo"
     }
 
-    FileView {
-        id: tempLoader
+    Process {
+        id: tempProc
 
-        path: "/sys/class/hwmon/hwmon3/temp3_input"
+        // Try thermal_zone files first, fall back to hwmon temp*_input
+        command: ["sh", "-c", "cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | head -n1 || cat /sys/class/hwmon/hwmon*/temp*_input 2>/dev/null | head -n1 || echo 0"]
+        running: false
+
+        stdout: SplitParser {
+            onRead: (data) => {
+                var raw = parseInt(data.trim()) || 0;
+                if (raw > 1000)
+                    root.cpuTemp = raw / 1000;
+                else
+                    root.cpuTemp = raw;
+            }
+        }
     }
 
     FileView {
@@ -136,9 +148,8 @@ ShellRoot {
             if (memTotal > 0 && memAvailable > 0)
                 root.memUsage = Math.round(100 * (memTotal - memAvailable) / memTotal);
 
-            tempLoader.reload();
-            var raw = parseInt(tempLoader.text().trim()) || 0;
-            root.cpuTemp = raw / 1000;
+            // Trigger temperature read (Process will pick an appropriate sysfs file)
+            tempProc.running = true;
             if (hasBattery || !hasBatteryChecked) {
                 batteryLoader.reload();
                 var batteryText = batteryLoader.text().trim();
