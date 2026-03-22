@@ -17,6 +17,7 @@ with lib;
   home.packages = with pkgs; [
     nix-tree
     nix-prefetch-git
+    nix-prefetch-github
 
   ];
 }

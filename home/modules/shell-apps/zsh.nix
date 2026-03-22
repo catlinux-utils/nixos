@@ -22,6 +22,8 @@
       {
         name = "catlinux-zsh-theme";
         file = "catlinux.zsh-theme";
+        #nix-prefetch-github catlinux-utils catlinux-zsh-theme
+
         src = pkgs.fetchFromGitHub {
           owner = "catlinux-utils";
           repo = "catlinux-zsh-theme";
