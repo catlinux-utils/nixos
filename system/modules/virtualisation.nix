@@ -1,10 +1,17 @@
-{ lib, vars, ... }:
+{
+  pkgs,
+  lib,
+  vars,
+  ...
+}:
 with lib;
 
 {
   config = mkIf (vars.modules.virtualisation.enable or false) {
     environment.systemPackages = with pkgs; [
       podman-compose
+      podman-tui
+
     ];
 
     virtualisation = {
