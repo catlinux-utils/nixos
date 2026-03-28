@@ -46,10 +46,13 @@ with lib;
         extensions =
           (with pkgs.vscode-marketplace; [
             ms-ceintl.vscode-language-pack-pl
+            
             esbenp.prettier-vscode
+
             eamodio.gitlens
             donjayamanne.githistory
             mhutchie.git-graph
+            github.vscode-pull-request-github
 
             bbenoist.nix
             jnoortheen.nix-ide
