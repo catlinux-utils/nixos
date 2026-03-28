@@ -16,7 +16,6 @@
       "wideo"
       "render"
       "docker"
-      "podman"
     ];
     shell = pkgs.zsh;
     initialHashedPassword = "${vars.initialPassword}";
