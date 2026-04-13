@@ -179,7 +179,8 @@ ShellRoot {
             property var monitor: Hyprland.monitors.values.find((m) => {
                 return m.name === modelData.name;
             }) || null
-            property string focusedTitle: (monitor && Hyprland.activeToplevel && Hyprland.activeToplevel.workspace.id === monitor.activeWorkspace.id) ? (Hyprland.activeToplevel.title ?? "") : ""
+            property bool hasWindowsOnWorkspace: monitor && monitor.activeWorkspace ? monitor.activeWorkspace.toplevels.values.length > 0 : false
+            property string focusedTitle: (monitor && hasWindowsOnWorkspace && Hyprland.activeToplevel && Hyprland.activeToplevel.workspace.id === monitor.activeWorkspace.id) ? (Hyprland.activeToplevel.title ?? "") : ""
 
             screen: modelData
             implicitHeight: 23
@@ -245,7 +246,7 @@ ShellRoot {
                                         return w.id === wsId;
                                     })
                                     property bool hasWindows: workspace ? workspace.toplevels.values.length > 0 : false
-                                    property bool isActive: Hyprland.focusedWorkspace.id === wsId
+                                    property bool isActive: Hyprland.focusedWorkspace?.id === wsId
 
                                     Layout.fillHeight: true
                                     radius: 5
@@ -378,7 +379,7 @@ ShellRoot {
                             anchors.centerIn: parent
 
                             Text {
-                                text: (volumeRoot.defaultSink.audio.muted ? "   " : "   ") + Math.floor((volumeRoot.defaultSink.audio.volume || 0) * 100) + "%"
+                                text: (volumeRoot.defaultSink.audio?.muted ? "   " : "   ") + Math.floor((volumeRoot.defaultSink.audio.volume || 0) * 100) + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -391,12 +392,13 @@ ShellRoot {
                             anchors.fill: parent
                             acceptedButtons: Qt.LeftButton
                             onClicked: {
-                                volumeRoot.defaultSink.audio.muted = !volumeRoot.defaultSink.audio.muted;
+                                if (volumeRoot.defaultSink?.audio)
+                                    volumeRoot.defaultSink.audio.muted = !volumeRoot.defaultSink.audio.muted;
                             }
                             onWheel: (wheel) => {
-                                if (!volumeRoot.defaultSink)
+                                if (!volumeRoot.defaultSink?.audio)
                                     return ;
- // 1%
+                                // 1%
                                 let step = 0.01;
                                 let vol = volumeRoot.defaultSink.audio.volume;
                                 let newVol;
@@ -524,7 +526,7 @@ ShellRoot {
 
                     Row {
                         spacing: 6
-                        visible: SystemTray.items.list.lenght > 0
+                        visible: SystemTray.items.list && SystemTray.items.list.length > 0
 
                         Repeater {
                             id: sysTray
@@ -585,7 +587,7 @@ ShellRoot {
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
                         color: root.col1
-                        visible: SystemTray.items.list.lenght > 0
+                        visible: SystemTray.items.list && SystemTray.items.list.length > 0
                     }
                     // Clock
 
