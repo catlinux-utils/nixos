@@ -46,7 +46,7 @@ with lib;
         extensions =
           (with pkgs.vscode-marketplace; [
             ms-ceintl.vscode-language-pack-pl
-            
+
             esbenp.prettier-vscode
 
             eamodio.gitlens
