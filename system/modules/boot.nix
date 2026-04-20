@@ -8,13 +8,16 @@
     initrd.systemd.enable = true;
     supportedFilesystems = [ "ntfs" ];
 
-    loader = {
+    plymouth = {
+      enable = true;
+      theme = "details";
+    };
 
+    loader = {
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/efi";
       };
-
       limine = {
         enable = true;
         enableEditor = false;
