@@ -31,8 +31,8 @@ with lib;
 
         general = {
           # Gaps and border
-          gaps_in = 1;
-          gaps_out = 1;
+          gaps_in = 0;
+          gaps_out = 0;
           gaps_workspaces = 50;
           border_size = 1;
 
@@ -138,7 +138,7 @@ with lib;
 
         dwindle = {
           preserve_split = true;
-          permanent_direction_override = true;
+          smart_split = true;
         };
 
         master = {
@@ -180,7 +180,7 @@ with lib;
         bind = [
           "Super, Q, killactive"
           "Super+Alt, Space, togglefloating"
-          "Super, I, togglesplit"
+          "Super, I, layoutmsg, togglesplit"
           "Super, F, fullscreen"
           "Alt, TAB, workspace,previous"
           #Apps
