@@ -1,10 +1,7 @@
 { pkgs, ... }:
 {
+  programs.command-not-found.enable = true;
 
-  home.packages = with pkgs; [
-    lsd
-    bat
-  ];
   programs.zsh = {
     enable = true;
     enableCompletion = true;
