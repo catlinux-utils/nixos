@@ -37,5 +37,11 @@ with lib;
       "x-terminal-emulator" = "kitty.desktop";
       "x-scheme-handler/terminal" = "kitty.desktop";
     };
+
+    dconf.settings = {
+      "org/cinnamon/desktop/applications/terminal" = {
+        exec = "kitty";
+      };
+    };
   };
 }
