@@ -12,8 +12,6 @@ with lib;
   config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
 
     home.packages = with pkgs; [
-      cantarell-fonts
-      materia-theme
       grim
       wl-clipboard
       playerctl
@@ -174,11 +172,6 @@ with lib;
           "uwsm app -- dbus-update-activation-environment --all"
           #"uwsm app -- hyprpm reload" # disable
           # "uwsm app -- ~/.config/hypr/scripts/gtk-setup.sh"
-          "gsettings set org.gnome.desktop.interface font-name 'Cantarell 10'"
-          "gsettings set org.gnome.desktop.interface cursor-theme Adwaita"
-          "gsettings set org.gnome.desktop.interface gtk-theme Materia-dark-compact"
-          "gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'"
-          "gsettings set org.cinnamon.desktop.default-applications.terminal exec kitty"
           # "uwsm app -- ags run --gtk 3"
           # "uwsm app -- nm-applet --indicator"
           # "uwsm app -- dunst"
