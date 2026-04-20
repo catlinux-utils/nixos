@@ -8,11 +8,6 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = {
-      ls = "lsd";
-      l = "ls -l";
-      la = "ls -a";
-      lla = "ls -la";
-      lt = "ls --tree";
       cat = "bat";
     };
     plugins = [

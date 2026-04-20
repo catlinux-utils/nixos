@@ -13,4 +13,9 @@ with lib;
     enable = true;
     enableZshIntegration = true;
   };
+  programs.zsh = {
+    shellAliases = {
+      l = "ll";
+    };
+  };
 }
