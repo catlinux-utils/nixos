@@ -150,11 +150,15 @@ ShellRoot {
 
             // Trigger temperature read (Process will pick an appropriate sysfs file)
             tempProc.running = true;
-            if (hasBattery || !hasBatteryChecked) {
+            if (hasBattery && hasBatteryChecked) {
                 batteryLoader.reload();
                 var batteryText = batteryLoader.text().trim();
+                var perc = parseInt(batteryText);
+                root.batteryPerc = perc;
             }
             if (!hasBatteryChecked) {
+                batteryLoader.reload();
+                var batteryText = batteryLoader.text().trim();
                 root.hasBatteryChecked = true;
                 var perc = parseInt(batteryText);
                 if (!isNaN(perc)) {
@@ -163,8 +167,6 @@ ShellRoot {
                 } else {
                     root.hasBattery = false;
                 }
-            } else {
-                root.hasBattery = false;
             }
             songProcTitle.running = true;
             songProcAuthor.running = true;
