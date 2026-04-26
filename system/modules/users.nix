@@ -18,6 +18,6 @@
       "docker"
     ];
     shell = pkgs.zsh;
-    initialHashedPassword = "${vars.initialPassword}";
+    initialPassword = "${vars.initialPassword}";
   };
 }

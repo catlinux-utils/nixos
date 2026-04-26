@@ -11,19 +11,17 @@ with lib;
 {
 
   config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
-    imports = [
-      inputs.qtengine.nixosModules.default
-    ];
 
     home.packages = with pkgs; [
-      breeze
-      breeze.qt5 # Needed if you want Qt5 support.
-      breeze-icons
+      kdePackages.breeze
+      kdePackages.breeze.qt5 # Needed if you want Qt5 support.
+      kdePackages.breeze-icons
+      qtengine
     ];
 
-    programs.qtengine = {
-      enable = true;
-      config = {
+    # Configure qtengine via xdg.configFile (home-manager equivalent)
+    xdg.configFile."qtengine/config.json" = {
+      text = builtins.toJSON {
         theme = {
           colorScheme = "${pkgs.kdePackages.breeze}/share/color-schemes/BreezeDark.colors";
           iconTheme = "breeze-dark";
@@ -43,5 +41,14 @@ with lib;
         };
       };
     };
+
+    # Set environment variable for qtengine
+    home.sessionVariables.QT_QPA_PLATFORMTHEME = "qtengine";
+    home.sessionVariables.QT_ICON_THEME = "breeze-dark";
+    systemd.user.sessionVariables = {
+      QT_QPA_PLATFORMTHEME = "qtengine";
+      QT_ICON_THEME = "breeze-dark";
+    };
+
   };
 }
