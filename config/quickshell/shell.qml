@@ -381,7 +381,7 @@ ShellRoot {
                             anchors.centerIn: parent
 
                             Text {
-                                text: (volumeRoot.defaultSink.audio?.muted ? "   " : "   ") + Math.floor((volumeRoot.defaultSink.audio.volume || 0) * 100) + "%"
+                                text: (volumeRoot.defaultSink?.audio?.muted ? "   " : "   ") + Math.floor((volumeRoot.defaultSink?.audio?.volume || 0) * 100) + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -528,7 +528,7 @@ ShellRoot {
 
                     Row {
                         spacing: 6
-                        visible: SystemTray.items.list && SystemTray.items.list.length > 0
+                        visible: sysTray.count > 0
 
                         Repeater {
                             id: sysTray
@@ -589,7 +589,7 @@ ShellRoot {
                         Layout.leftMargin: 8
                         Layout.rightMargin: 8
                         color: root.col1
-                        visible: SystemTray.items.list && SystemTray.items.list.length > 0
+                        visible: sysTray.count > 0
                     }
                     // Clock
 
