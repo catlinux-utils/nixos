@@ -21,6 +21,8 @@ with lib;
 
       glibcLocales
 
+      hyprshutdown
+
     ];
 
     wayland.windowManager.hyprland = {

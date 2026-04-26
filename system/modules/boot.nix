@@ -10,7 +10,7 @@
 
     plymouth = {
       enable = true;
-      theme = "details";
+      theme = "tribar";
     };
 
     loader = {
