@@ -8,6 +8,6 @@
 with lib;
 {
   programs.lutris = {
-    enable = true;
+    enable = false;
   };
 }
