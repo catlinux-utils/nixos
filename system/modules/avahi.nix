@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, vars, ... }:
 with lib;
 {
   config = mkIf (vars.modules.avahi.enable or false) {
