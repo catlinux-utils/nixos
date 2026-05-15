@@ -29,17 +29,21 @@
         config.allowUnfree = true;
       };
 
-      hostNames = builtins.sort (a: b: a < b) (builtins.filter (name:
-        builtins.pathExists ./system/hosts/${name}/config-modules.nix
-      ) (builtins.attrNames (builtins.readDir ./system/hosts)));
+      hostNames = builtins.sort (a: b: a < b) (
+        builtins.filter (name: builtins.pathExists ./system/hosts/${name}/config-modules.nix) (
+          builtins.attrNames (builtins.readDir ./system/hosts)
+        )
+      );
 
-      hosts = builtins.listToAttrs (map (name:
-        { name = name;
+      hosts = builtins.listToAttrs (
+        map (name: {
+          name = name;
           value = import ./system/hosts/${name}/config-modules.nix { inherit pkgs; };
-        }
-      ) hostNames);
+        }) hostNames
+      );
 
-      makeNixosConfiguration = hostName:
+      makeNixosConfiguration =
+        hostName:
         let
           vars = hosts.${hostName};
         in
@@ -64,8 +68,11 @@
 
     in
     {
-      nixosConfigurations = builtins.listToAttrs (map (name:
-        { name = name; value = makeNixosConfiguration name; }
-      ) hostNames);
+      nixosConfigurations = builtins.listToAttrs (
+        map (name: {
+          name = name;
+          value = makeNixosConfiguration name;
+        }) hostNames
+      );
     };
 }
