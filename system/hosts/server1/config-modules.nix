@@ -27,7 +27,7 @@ rec {
       secureboot.enable = false;
     };
     ssh = {
-      enable = true
+      enable = true;
     };
   };
 }
