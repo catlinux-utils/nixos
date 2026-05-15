@@ -29,7 +29,7 @@
         config.allowUnfree = true;
       };
 
-      hostNames = builtins.sort (builtins.filter (name:
+      hostNames = builtins.sort (a: b: a < b) (builtins.filter (name:
         builtins.pathExists ./system/hosts/${name}/config-modules.nix
       ) (builtins.readDir ./system/hosts));
 
