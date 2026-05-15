@@ -32,6 +32,8 @@
       pc-main = import ./system/hosts/pc-main/config-modules.nix { inherit pkgs; };
       vm = import ./system/hosts/vm/config-modules.nix { inherit pkgs; };
       vm-desktop = import ./system/hosts/vm-desktop/config-modules.nix { inherit pkgs; };
+      server1 = import ./system/hosts/server1/config-modules.nix { inherit pkgs; };
+
     in
     {
       nixosConfigurations = {
@@ -60,6 +62,36 @@
                   inherit inputs vars;
                 };
               home-manager.users.${pc-main.user} = {
+                imports = [ ./home/home.nix ];
+              };
+            }
+          ];
+        };
+        server1 = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs =
+            let
+              vars = server1;
+            in
+            {
+              inherit inputs vars;
+            };
+
+          modules = [
+            ./system/hosts/server1/hardware-configuration.nix
+            ./system/modules.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs =
+                let
+                  vars = server1;
+                in
+                {
+                  inherit inputs vars;
+                };
+              home-manager.users.${server1.user} = {
                 imports = [ ./home/home.nix ];
               };
             }

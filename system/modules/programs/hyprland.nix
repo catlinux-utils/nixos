@@ -40,6 +40,11 @@ with lib;
 
     programs.dconf.enable = true;
 
-  };
+    programs.steam = {
+      enable = true;
+    };
 
+    services.flatpak.enable = true; 
+
+  };
 }

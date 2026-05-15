@@ -1,0 +1,30 @@
+{ pkgs }:
+
+rec {
+  conf-name = "server1";
+  user = "cat";
+  initialPassword = "cat";
+  networkingHostName = "nixos";
+  timezone = "Europe/Warsaw";
+  defaultLocale = "pl_PL.UTF-8";
+  flakeLocation = "/home/${user}/github/nixos";
+  modules = {
+    desktop-environment = {
+      hyprland = {
+        enable = false;
+      };
+    };
+    home-manager = {
+      packages = {
+        git = {
+          name = "ThePolishCat";
+          email = "88453875+PolskiKocurek@users.noreply.github.com";
+
+        };
+      };
+    };
+    boot = {
+      secureboot.enable = false;
+    };
+  };
+}

@@ -22,7 +22,7 @@
         enable = true;
         enableEditor = false;
         panicOnChecksumMismatch = true;
-        secureBoot.enable = true;
+        secureBoot.enable = (vars.modules.boot.secureboot.enable or true);
         resolution = "max";
         maxGenerations = 4;
         style.wallpapers = [ ];
