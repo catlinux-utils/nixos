@@ -31,7 +31,7 @@
 
       hostNames = builtins.sort (a: b: a < b) (builtins.filter (name:
         builtins.pathExists ./system/hosts/${name}/config-modules.nix
-      ) (builtins.readDir ./system/hosts));
+      ) (builtins.attrNames (builtins.readDir ./system/hosts)));
 
       hosts = builtins.listToAttrs (map (name:
         { name = name;
