@@ -29,134 +29,43 @@
         config.allowUnfree = true;
       };
 
-      pc-main = import ./system/hosts/pc-main/config-modules.nix { inherit pkgs; };
-      vm = import ./system/hosts/vm/config-modules.nix { inherit pkgs; };
-      vm-desktop = import ./system/hosts/vm-desktop/config-modules.nix { inherit pkgs; };
-      server1 = import ./system/hosts/server1/config-modules.nix { inherit pkgs; };
+      hostNames = builtins.sort (builtins.filter (name:
+        builtins.pathExists ./system/hosts/${name}/config-modules.nix
+      ) (builtins.readDir ./system/hosts));
 
-    in
-    {
-      nixosConfigurations = {
-        pc-main = nixpkgs.lib.nixosSystem {
+      hosts = builtins.listToAttrs (map (name:
+        { name = name;
+          value = import ./system/hosts/${name}/config-modules.nix { inherit pkgs; };
+        }
+      ) hostNames);
+
+      makeNixosConfiguration = hostName:
+        let
+          vars = hosts.${hostName};
+        in
+        nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs =
-            let
-              vars = pc-main;
-            in
-            {
-              inherit inputs vars;
-            };
+          specialArgs = { inherit inputs vars; };
           modules = [
-            ./system/hosts/pc-main/hardware-configuration.nix
+            ./system/hosts/${hostName}/hardware-configuration.nix
             ./system/modules.nix
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs =
-                let
-                  vars = pc-main;
-                in
-                {
-                  inherit inputs vars;
-                };
-              home-manager.users.${pc-main.user} = {
+              home-manager.extraSpecialArgs = { inherit inputs vars; };
+              home-manager.users.${vars.user} = {
                 imports = [ ./home/home.nix ];
               };
             }
           ];
         };
-        server1 = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs =
-            let
-              vars = server1;
-            in
-            {
-              inherit inputs vars;
-            };
 
-          modules = [
-            ./system/hosts/server1/hardware-configuration.nix
-            ./system/modules.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs =
-                let
-                  vars = server1;
-                in
-                {
-                  inherit inputs vars;
-                };
-              home-manager.users.${server1.user} = {
-                imports = [ ./home/home.nix ];
-              };
-            }
-          ];
-        };
-        vm = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs =
-            let
-              vars = vm;
-            in
-            {
-              inherit inputs vars;
-            };
-
-          modules = [
-            ./system/hosts/vm/hardware-configuration.nix
-            ./system/modules.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs =
-                let
-                  vars = vm;
-                in
-                {
-                  inherit inputs vars;
-                };
-              home-manager.users.${vm.user} = {
-                imports = [ ./home/home.nix ];
-              };
-            }
-          ];
-        };
-        vm-desktop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs =
-            let
-              vars = vm-desktop;
-            in
-            {
-              inherit inputs vars;
-            };
-
-          modules = [
-            ./system/hosts/vm-desktop/hardware-configuration.nix
-            ./system/modules.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs =
-                let
-                  vars = vm-desktop;
-                in
-                {
-                  inherit inputs vars;
-                };
-              home-manager.users.${vm-desktop.user} = {
-                imports = [ ./home/home.nix ];
-              };
-            }
-          ];
-        };
-      };
+    in
+    {
+      nixosConfigurations = builtins.listToAttrs (map (name:
+        { name = name; value = makeNixosConfiguration name; }
+      ) hostNames);
     };
 }
