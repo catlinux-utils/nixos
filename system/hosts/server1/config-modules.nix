@@ -4,7 +4,7 @@ rec {
   conf-name = "server1";
   user = "cat";
   initialPassword = "cat";
-  networkingHostName = "nixos";
+  networkingHostName = "nixos-server1";
   timezone = "Europe/Warsaw";
   defaultLocale = "pl_PL.UTF-8";
   flakeLocation = "/home/${user}/github/nixos";
@@ -27,6 +27,9 @@ rec {
       secureboot.enable = false;
     };
     ssh = {
+      enable = true;
+    };
+    avahi = {
       enable = true;
     };
   };
