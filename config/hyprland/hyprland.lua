@@ -107,7 +107,6 @@ hl.on("monitor.added", function()
 
     local monitors = hl.get_monitors()
 
-    -- Define your monitor-to-workspace mapping
     local workspace_map = {
         ["DP-3"] = {
             start_w = 1,
@@ -119,7 +118,6 @@ hl.on("monitor.added", function()
         }
     }
 
-    -- Check which target monitors are actually connected
     local connected = {}
     for _, mon in ipairs(monitors) do
         if workspace_map[mon.name] then
@@ -127,8 +125,7 @@ hl.on("monitor.added", function()
         end
     end
 
-    -- Only apply rules if BOTH are present (matching your original logic)
-    if connected["DP-3"] and connected["HDMI-A-1"] then
+    if connected["DP-3"] or connected["HDMI-A-1"] then
         for mon_name, range in pairs(workspace_map) do
             for i = range.start_w, range.end_w do
                 hl.workspace_rule({
