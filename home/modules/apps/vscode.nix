@@ -37,10 +37,18 @@ with lib;
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
           };
+          "[lua]" = {
+            "editor.defaultFormatter" = "yinfei.luahelper";
+          };
           "update.showReleaseNotes" = false;
           "diffEditor.maxComputationTime" = 0;
           "editor.unicodeHighlight.ambiguousCharacters" = false;
           "diffEditor.hideUnchangedRegions.enabled" = true;
+          "workbench.editorAssociations" = {
+            "{git,gitlens,chat-editing-snapshot-text-model,copilot,git-graph,git-graph-3}:/**/*.qrc" =
+              "default";
+            "*.qrc" = "qt-core.qrcEditor";
+          };
 
         };
         extensions =
