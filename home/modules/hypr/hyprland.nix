@@ -29,6 +29,6 @@ with lib;
       enable = true;
       systemd.enable = false;
     };
-    home.file.".config/hyprland/hyprland.lua".source = config/hyprland/hyprland.lua;
+    home.file.".config/hypr/hyprland.lua".source = ../../../config/hyprland/hyprland.lua;
   };
 }
