@@ -24,7 +24,6 @@
         panicOnChecksumMismatch = true;
         secureBoot.enable = (vars.modules.boot.secureboot.enable or true);
         resolution = "max";
-        maxGenerations = 4;
         style.wallpapers = [ ];
         extraEntries = ''
           /Windows

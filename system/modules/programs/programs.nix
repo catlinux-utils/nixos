@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   programs.zsh.enable = true;
+  programs.steam = {
+    enable = true;
+  };
+
+  services.flatpak.enable = true;
 
   fonts.packages = with pkgs; [
     noto-fonts
