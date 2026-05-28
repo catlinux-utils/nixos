@@ -11,6 +11,10 @@ with lib;
 
   config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
 
+    home.packages = [
+      pkgs.nerd-fonts.jetbrains-mono
+    ];
+
     programs.quickshell = {
       enable = true;
       configs.default = ../../../config/quickshell;
