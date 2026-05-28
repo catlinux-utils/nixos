@@ -227,9 +227,9 @@ ShellRoot {
                             acceptedButtons: Qt.NoButton
                             onWheel: (wheel) => {
                                 if (wheel.angleDelta.y > 0)
-                                    Hyprland.dispatch("workspace -1");
+                                    Hyprland.dispatch(`hl.dsp.focus({workspace = "-1"})`);
                                 else if (wheel.angleDelta.y < 0)
-                                    Hyprland.dispatch("workspace +1");
+                                    Hyprland.dispatch(`hl.dsp.focus({workspace = "+1"})`);
                                 wheel.accepted = true;
                             }
                         }
@@ -284,7 +284,7 @@ ShellRoot {
 
                                     MouseArea {
                                         anchors.fill: parent
-                                        onClicked: Hyprland.dispatch("workspace " + wsId)
+                                        onClicked: Hyprland.dispatch(`hl.dsp.focus({ workspace = ${wsId} })`)
                                         onWheel: (wheel) => {
                                             return wheel.accepted = false;
                                         }
@@ -381,7 +381,7 @@ ShellRoot {
                             anchors.centerIn: parent
 
                             Text {
-                                text: (volumeRoot.defaultSink?.audio?.muted ? " " : " ") + Math.floor((volumeRoot.defaultSink?.audio?.volume || 0) * 100) + "%"
+                                text: (volumeRoot.defaultSink?.audio?.muted ? "  " : "  ") + Math.floor((volumeRoot.defaultSink?.audio?.volume || 0) * 100) + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
