@@ -33,7 +33,7 @@ ShellRoot {
     property color col14: Theme.col14
     property color col15: Theme.col15
     property color col16: Theme.col16
-    property string fontFamily: "JetBrainsMono Nerd Font"
+    property string fontFamily: "Noto Sans"
     property int fontSize: 12
     property int cpuUsage: 0
     property int memUsage: 0
