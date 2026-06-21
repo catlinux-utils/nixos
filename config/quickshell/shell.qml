@@ -299,30 +299,30 @@ ShellRoot {
 
                     }
 
-                    Rectangle {
-                        Layout.preferredWidth: 1
-                        Layout.preferredHeight: 16
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 8
-                        Layout.rightMargin: 8
-                        color: root.col1
-                        visible: focusedTitle !== ""
-                    }
-                    // Window Title
+                    // Rectangle {
+                    //     Layout.preferredWidth: 1
+                    //     Layout.preferredHeight: 16
+                    //     Layout.alignment: Qt.AlignVCenter
+                    //     Layout.leftMargin: 8
+                    //     Layout.rightMargin: 8
+                    //     color: root.col1
+                    //     visible: focusedTitle !== ""
+                    // }
+                    // // Window Title
 
-                    Text {
-                        text: focusedTitle
-                        color: root.col7
-                        font.pixelSize: root.fontSize
-                        font.family: root.fontFamily
-                        font.bold: true
-                        Layout.alignment: Qt.AlignVCenter
-                        Layout.leftMargin: 8
-                        Layout.rightMargin: 8
-                        Layout.maximumWidth: 400
-                        elide: Text.ElideRight
-                        visible: focusedTitle !== ""
-                    }
+                    // Text {
+                    //     text: focusedTitle
+                    //     color: root.col7
+                    //     font.pixelSize: root.fontSize
+                    //     font.family: root.fontFamily
+                    //     font.bold: true
+                    //     Layout.alignment: Qt.AlignVCenter
+                    //     Layout.leftMargin: 8
+                    //     Layout.rightMargin: 8
+                    //     Layout.maximumWidth: 400
+                    //     elide: Text.ElideRight
+                    //     visible: focusedTitle !== ""
+                    // }
 
                     Item {
                         Layout.fillWidth: true
