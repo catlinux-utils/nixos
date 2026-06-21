@@ -203,7 +203,7 @@ ShellRoot {
 
             Rectangle {
                 anchors.fill: parent
-                radius: 5
+                //radius: 5
                 color: root.colBg
 
                 RowLayout {
