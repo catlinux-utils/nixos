@@ -31,5 +31,10 @@ with lib;
         size = 10;
       };
     };
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        gtk-enable-primary-paste = true;
+      };
+    };
   };
 }
