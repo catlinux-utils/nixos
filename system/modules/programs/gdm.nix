@@ -6,12 +6,12 @@ with lib;
 
     services.displayManager.plasma-login-manager = {
       enable = true;
-      settings = {
-        Greeter = {
-          PreselectedSession = "hyprland-uwsm.desktop";
-        };
-      };
     };
+
+    environment.etc."plasmalogin.conf".text = ''
+      [Greeter]
+      PreselectedSession=hyprland-uwsm.desktop
+    '';
     services.desktopManager.plasma6.enable = true;
 
   };
