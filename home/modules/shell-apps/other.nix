@@ -12,5 +12,7 @@ with lib;
     duf
     unzip
     p7zip
+    yt-dlp
+    lmstudio
   ];
 }
