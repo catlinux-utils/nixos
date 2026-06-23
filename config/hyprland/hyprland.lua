@@ -18,7 +18,6 @@ hl.config({
         gaps_in = 0,
         gaps_out = 0,
         gaps_workspaces = 50,
-        border_size = 1,
 
         resize_on_border = true,
         no_focus_fallback = true,
@@ -104,9 +103,19 @@ hl.device({
     accel_profile = "adaptive"
 })
 
-hl.on("monitor.added", function()
+hl.on("hyprland.start", function()
     hl.exec_cmd("uwsm app -- dbus-update-activation-environment --all")
+    monitors_setup()
+end)
 
+hl.on("monitor.added", function()
+    monitors_setup()
+end)
+hl.on("config.reloaded", function()
+    monitors_setup()
+end)
+
+function monitors_setup()
     local monitors = hl.get_monitors()
 
     local workspace_map = {
@@ -137,7 +146,7 @@ hl.on("monitor.added", function()
             end
         end
     end
-end)
+end
 
 -----------------------
 ----- PERMISSIONS -----
