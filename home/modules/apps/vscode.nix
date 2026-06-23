@@ -49,6 +49,7 @@ with lib;
               "default";
             "*.qrc" = "qt-core.qrcEditor";
           };
+          "chat.viewSessions.orientation" = "stacked";
 
         };
         extensions =

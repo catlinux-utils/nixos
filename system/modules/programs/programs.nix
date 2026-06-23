@@ -19,6 +19,8 @@
     enable = true;
     binfmt = true;
   };
-  environment.systemPackages = [ pkgs.distrobox ];
+  environment.systemPackages = [
+    pkgs.distrobox
+  ];
 
 }
