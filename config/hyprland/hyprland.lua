@@ -335,6 +335,7 @@ hl.bind("SUPER + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 &&
 
 hl.bind("SUPER + ALT + Space", hl.dsp.window.float())
 hl.bind("SUPER + I", hl.dsp.layout("togglesplit"))
+hl.bind("SUPER + L", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 hl.bind("ALT + Tab", hl.dsp.focus({
     workspace = "previous"
