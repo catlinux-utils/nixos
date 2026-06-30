@@ -28,7 +28,7 @@ with lib;
           style = "breeze";
 
           font = {
-            family = "Cantarell";
+            family = "Noto Sans";
             size = 10;
             weight = -1;
           };

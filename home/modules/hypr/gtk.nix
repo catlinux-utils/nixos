@@ -26,8 +26,8 @@ with lib;
       };
 
       font = {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell";
+        package = pkgs.noto-fonts;
+        name = "Noto Sans";
         size = 10;
       };
     };
