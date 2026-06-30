@@ -66,8 +66,9 @@ with lib;
             bbenoist.nix
             jnoortheen.nix-ide
 
-            theqtcompany.qt-core
-            #theqtcompany.qt-qml
+            # theqtcompany.qt-core
+            # theqtcompany.qt-qml
+
           ])
           ++ (with pkgs.vscode-extensions; [
             github.copilot
