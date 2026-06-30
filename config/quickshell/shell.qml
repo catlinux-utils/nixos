@@ -381,7 +381,7 @@ ShellRoot {
                             anchors.centerIn: parent
 
                             Text {
-                                text: (volumeRoot.defaultSink?.audio?.muted ? "  " : "  ") + Math.floor((volumeRoot.defaultSink?.audio?.volume || 0) * 100) + "%"
+                                text: (volumeRoot.defaultSink?.audio?.muted ? "   " : "   ") + Math.floor((volumeRoot.defaultSink?.audio?.volume || 0) * 100) + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -426,7 +426,7 @@ ShellRoot {
                     // Battery
 
                     Text {
-                        text: "󰂎 " + root.batteryPerc + "%"
+                        text: "󰂎  " + root.batteryPerc + "%"
                         color: root.col14
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
@@ -471,7 +471,7 @@ ShellRoot {
 
                             // CPU usage
                             Text {
-                                text: " " + cpuUsage + "%"
+                                text: "  " + cpuUsage + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -488,7 +488,7 @@ ShellRoot {
                             // Memory usage
 
                             Text {
-                                text: " " + memUsage + "%"
+                                text: "   " + memUsage + "%"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -505,7 +505,7 @@ ShellRoot {
                             // CPU temperature
 
                             Text {
-                                text: " " + cpuTemp.toFixed(1) + "°C"
+                                text: "  " + cpuTemp.toFixed(1) + "°C"
                                 color: root.col14
                                 font.pixelSize: root.fontSize
                                 font.family: root.fontFamily
@@ -613,8 +613,6 @@ ShellRoot {
                     }
 
                 }
-                // center
-
             }
 
         }
