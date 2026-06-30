@@ -10,7 +10,7 @@ rec {
   flakeLocation = "/home/${user}/github/nixos";
   modules = {
     display-manager = {
-      gdm = {
+      greeter = {
         enable = true;
       };
     };

@@ -2,7 +2,7 @@
 with lib;
 
 {
-  config = mkIf (vars.modules.display-manager.gdm.enable or false) {
+  config = mkIf (vars.modules.display-manager.greeter.enable or false) {
 
     services.displayManager.plasma-login-manager = {
       enable = true;

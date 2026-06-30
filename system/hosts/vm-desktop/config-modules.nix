@@ -13,7 +13,7 @@ rec {
       enable = true;
     };
     display-manager = {
-      gdm = {
+      greeter = {
         enable = true;
       };
     };
