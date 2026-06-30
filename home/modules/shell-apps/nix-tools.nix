@@ -11,7 +11,7 @@ with lib;
     enable = true;
     clean.enable = true;
     clean.dates = "daily";
-    clean.extraArgs = "--keep 4 --keep-since 3d";
+    clean.extraArgs = "--keep 5 --keep-since 3d";
     flake = vars.flakeLocation + "#" + vars.conf-name;
   };
   home.packages = with pkgs; [
