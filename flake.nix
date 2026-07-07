@@ -29,50 +29,17 @@
         config.allowUnfree = true;
       };
 
-      hostNames = builtins.sort (a: b: a < b) (
-        builtins.filter (name: builtins.pathExists ./system/hosts/${name}/config-modules.nix) (
-          builtins.attrNames (builtins.readDir ./system/hosts)
-        )
-      );
-
-      hosts = builtins.listToAttrs (
-        map (name: {
-          name = name;
-          value = import ./system/hosts/${name}/config-modules.nix { inherit pkgs; };
-        }) hostNames
-      );
-
-      makeNixosConfiguration =
-        hostName:
-        let
-          vars = hosts.${hostName};
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs vars; };
-          modules = [
-            ./system/hosts/${hostName}/hardware-configuration.nix
-            ./system/modules.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs vars; };
-              home-manager.users.${vars.user} = {
-                imports = [ ./home/home.nix ];
-              };
-            }
-          ];
-        };
+      hostsModule = import ./hosts {
+        inherit
+          inputs
+          pkgs
+          nixpkgs
+          home-manager
+          ;
+      };
 
     in
     {
-      nixosConfigurations = builtins.listToAttrs (
-        map (name: {
-          name = name;
-          value = makeNixosConfiguration name;
-        }) hostNames
-      );
+      nixosConfigurations = hostsModule.configurations;
     };
 }
