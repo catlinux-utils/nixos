@@ -1,4 +1,9 @@
-{ inputs, vars, ... }:
+{
+  pkgs,
+  inputs,
+  vars,
+  ...
+}:
 
 {
   i18n.defaultLocale = "${vars.defaultLocale}";
@@ -23,6 +28,7 @@
 
   #security.polkit.enable = true;
   nix = {
+    package = pkgs.lixPackageSets.latest.lix;
     settings = {
       experimental-features = [
         "nix-command"
