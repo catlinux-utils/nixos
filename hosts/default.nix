@@ -49,10 +49,13 @@ in
   configurations = builtins.listToAttrs (
     map (name: {
       name = name;
-      value = {
-        description = "NixOS configuration for ${name}";
-        value = makeNixosConfiguration name;
-      };
+      value = makeNixosConfiguration name;
+    }) hostNames
+  );
+  descriptions = builtins.listToAttrs (
+    map (name: {
+      name = name;
+      value = "NixOS configuration for ${name}";
     }) hostNames
   );
 }

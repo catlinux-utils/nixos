@@ -14,6 +14,7 @@
     };
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
+
   outputs =
     {
       self,
@@ -28,18 +29,16 @@
         inherit system;
         config.allowUnfree = true;
       };
-
-      hostsModule = import ./hosts {
-        inherit
-          inputs
-          pkgs
-          nixpkgs
-          home-manager
-          ;
-      };
-
     in
     {
-      nixosConfigurations = hostsModule.configurations;
+      nixosConfigurations =
+        (import ./hosts {
+          inherit
+            inputs
+            pkgs
+            nixpkgs
+            home-manager
+            ;
+        }).configurations;
     };
 }
