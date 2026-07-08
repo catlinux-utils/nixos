@@ -596,7 +596,7 @@ ShellRoot {
                     Text {
                         id: clockText
 
-                        text: Qt.formatDateTime(clock.date, "dddd - dd/MM/yyyy - hh:mm")
+                        text: Qt.locale().toString(clock.date, "dddd - dd/MM/yyyy - hh:mm") //Qt.formatDateTime(clock.date, "dddd - dd/MM/yyyy - hh:mm")
                         color: root.col16
                         font.pixelSize: root.fontSize
                         font.family: root.fontFamily
