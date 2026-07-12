@@ -21,10 +21,7 @@ rec {
       enable = true;
     };
     desktop-environment = {
-      hyprland = {
-        enable = true;
-        twomonitors = true;
-      };
+      hyprland.enable = true;
     };
     home-manager = {
       packages = {
