@@ -66,11 +66,12 @@ rec {
 
   modules = {
     # Enable modules per host
-    display-manager = { greeter = { enable = true; }; };
-    ollama = { enable = true; };
-    virtualisation = { enable = true; };
+    display-manager = { greeter.enable = true; };
+    ollama.enable = true; 
+    virtualisation.enable = true; 
     desktop-environment = {
       hyprland.enable = true; 
+    };
     home-manager = {
       packages = {
         git = { name = "Your Name"; email = "you@example.com"; };
