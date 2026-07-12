@@ -121,24 +121,50 @@ nix run nixpkgs#deadnix .        # Dead code check (if configured)
 
 ## 🖥️ Desktop Environment
 
-**Hyprland** (Wayland compositor) + **QuickShell** (QML bar/widgets).
+**Hyprland** (Wayland compositor) + **QuickShell** (QML bar/widgets). Configuration is split:
 
-Keybindings (from `config/hyprland/hyprland.lua`):
-- `SUPER + RETURN` — Terminal (Kitty)
-- `SUPER + SPACE` — Rofi launcher
-- `SUPER + SHIFT + Q` — Close window
-- `SUPER + [1-9]` — Workspace switch
-- `SUPER + SHIFT + [1-9]` — Move window to workspace
-- `SUPER + V` — Toggle floating
-- `SUPER + F` — Fullscreen
-
-Theming: Catppuccin Mocha via `home/modules/hypr/theming.nix` and `config/quickshell/Theme.qml`.
-
-External configs (linked via Home Manager):
-- `config/hyprland/hyprland.lua` — Hyprland config
-- `config/quickshell/shell.qml` — QuickShell bar
-- `config/quickshell/hyprland.lua` — QuickShell ↔ Hyprland integration
+- `config/hyprland/hyprland.lua` — Hyprland config (Lua)
+- `config/quickshell/shell.qml` — QuickShell bar (QML)
+- `config/quickshell/Theme.qml` — Catppuccin-like color palette
 - `config/wallpaper/arch-windows.png` — Wallpaper
+
+### Hyprland Keybindings
+
+| Key | Action |
+|-----|--------|
+| `SUPER + Q` | Close window |
+| `SUPER + SHIFT + C` | Kill window |
+| `SUPER + M` | Shutdown menu (`hyprshutdown` / `uwsm stop`) |
+| `SUPER + ALT + SPACE` | Toggle floating |
+| `SUPER + I` | Toggle split |
+| `SUPER + L` | Lock session |
+| `SUPER + F` | Toggle fullscreen |
+| `ALT + TAB` | Previous workspace |
+| `SUPER + T` | Terminal (Kitty) |
+| `SUPER + W` | Browser (Brave) |
+| `SUPER + C` | Editor (VS Code) |
+| `SUPER + E` | File manager (Nemo) |
+| `SUPER + R` | Rofi launcher |
+| `SUPER + SHIFT + S` | Screenshot region |
+| `SUPER + ARROWS` | Focus window |
+| `SUPER + SHIFT + ARROWS` | Move window |
+| `SUPER + [1-9,0]` | Switch to workspace 1–10 |
+| `SUPER + ALT + [1-9,0]` | Move window to workspace 1–10 |
+| Media keys | Volume, brightness, media control |
+
+Multi-monitor workspace mapping (DP-3: 1–5, HDMI-A-1: 6–10) handled in `monitors_setup()`.
+
+Animations: custom bezier curves + spring animations for windows, borders, workspaces, layers, fade, zoom.
+
+Window rules: suppress maximize events, float picture-in-picture, ignore empty XWayland windows.
+
+### QuickShell Bar
+
+Top bar with: workspace indicators, active window title, system tray, volume (PipeWire), battery, CPU/memory usage (click → `btop`), clock.
+
+### Theming
+
+Catppuccin Mocha–inspired palette in `config/quickshell/Theme.qml` (colBg `#010001` … col15 `#edf0fc`). GTK/Qt theming via `home/modules/hypr/theming.nix`.
 
 ---
 
