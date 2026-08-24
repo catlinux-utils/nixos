@@ -1,5 +1,3 @@
-{ pkgs }:
-
 rec {
   conf-name = "server1";
   user = "cat";
