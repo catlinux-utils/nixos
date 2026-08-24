@@ -34,7 +34,7 @@ with lib;
           };
 
           fontFixed = {
-            family = "MesloLGL Nerd Font Mono";
+            family = "MesloLGS Nerd Font Mono";
             size = 10;
             weight = -1;
           };
