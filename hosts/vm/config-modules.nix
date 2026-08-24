@@ -2,7 +2,7 @@ rec {
   conf-name = "vm";
   user = "cat";
   initialPassword = "cat";
-  networkingHostName = "nixos";
+  networkingHostName = "nixos-vm";
   timezone = "Europe/Warsaw";
   defaultLocale = "pl_PL.UTF-8";
   flakeLocation = "/home/${user}/github/nixos";
