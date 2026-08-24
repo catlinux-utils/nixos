@@ -20,6 +20,7 @@ rec {
         enable = true;
       };
     };
+    gaming.enable = true;
     home-manager = {
       packages = {
         git = {

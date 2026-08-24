@@ -1,11 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, vars, ... }:
+
+with lib;
 
 {
-  programs.rofi = {
-    enable = true;
+  config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
+    programs.rofi = {
+      enable = true;
 
-    theme = builtins.toString (
-      pkgs.writeText "rofi-theme" ''
+      theme = builtins.toString (
+        pkgs.writeText "rofi-theme" ''
                 /**
          *
          * Author : Aditya Shakya (adi1090x)
@@ -324,7 +327,8 @@
             background-color:            @background-colour;
             text-color:                  @foreground-colour;
         }
-      ''
-    );
+        ''
+      );
+    };
   };
 }

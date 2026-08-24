@@ -21,6 +21,7 @@ rec {
     desktop-environment = {
       hyprland.enable = true;
     };
+    gaming.enable = true;
     home-manager = {
       packages = {
         git = {

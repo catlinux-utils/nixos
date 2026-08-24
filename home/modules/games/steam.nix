@@ -7,8 +7,10 @@
 
 with lib;
 {
-  home.packages = with pkgs; [
-    protonup-qt
-    gamemode
-  ];
+  config = mkIf (vars.modules.gaming.enable or false) {
+    home.packages = with pkgs; [
+      protonup-qt
+      gamemode
+    ];
+  };
 }

@@ -7,7 +7,9 @@
 
 with lib;
 {
-  home.packages = with pkgs; [
-    prismlauncher
-  ];
+  config = mkIf (vars.modules.gaming.enable or false) {
+    home.packages = with pkgs; [
+      prismlauncher
+    ];
+  };
 }

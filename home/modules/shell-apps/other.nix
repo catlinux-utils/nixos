@@ -7,12 +7,19 @@
 
 with lib;
 {
-  home.packages = with pkgs; [
-    ncdu
-    duf
-    unzip
-    p7zip
-    yt-dlp
-    lmstudio
+  config = mkMerge [
+    {
+      home.packages = with pkgs; [
+        ncdu
+        duf
+        unzip
+        p7zip
+        yt-dlp
+      ];
+    }
+
+    (mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
+      home.packages = with pkgs; [ lmstudio ];
+    })
   ];
 }

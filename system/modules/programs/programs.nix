@@ -1,26 +1,33 @@
-{ pkgs, ... }:
 {
-  programs.zsh.enable = true;
-  programs.steam = {
-    enable = true;
-  };
+  lib,
+  pkgs,
+  vars,
+  ...
+}:
+with lib;
+{
+  config = mkMerge [
+    { programs.zsh.enable = true; }
 
-  services.flatpak.enable = true;
+    (mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
+      services.flatpak.enable = true;
+      fonts.packages = with pkgs; [
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-color-emoji
+      ];
+      programs.appimage = {
+        enable = true;
+        binfmt = true;
+      };
+      environment.systemPackages = [
+        pkgs.distrobox
+      ];
+    })
 
-  fonts.packages = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-cjk-serif
-    noto-fonts-color-emoji
-
+    (mkIf (vars.modules.gaming.enable or false) {
+      programs.steam.enable = true;
+    })
   ];
-
-  programs.appimage = {
-    enable = true;
-    binfmt = true;
-  };
-  environment.systemPackages = [
-    pkgs.distrobox
-  ];
-
 }
