@@ -32,9 +32,7 @@ with lib;
     };
 
     xdg.mimeApps.defaultApplications = {
-      "mimetype" = "kitty.desktop";
       "application/x-terminal-emulator" = "kitty.desktop";
-      "x-terminal-emulator" = "kitty.desktop";
       "x-scheme-handler/terminal" = "kitty.desktop";
     };
 
