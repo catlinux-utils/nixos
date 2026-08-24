@@ -44,17 +44,9 @@ let
     };
 
 in
-{
-  configurations = builtins.listToAttrs (
-    map (name: {
-      name = name;
-      value = makeNixosConfiguration name;
-    }) hostNames
-  );
-  descriptions = builtins.listToAttrs (
-    map (name: {
-      name = name;
-      value = "NixOS configuration for ${name}";
-    }) hostNames
-  );
-}
+builtins.listToAttrs (
+  map (name: {
+    inherit name;
+    value = makeNixosConfiguration name;
+  }) hostNames
+)

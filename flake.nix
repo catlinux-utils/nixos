@@ -23,13 +23,12 @@
       ...
     }@inputs:
     {
-      nixosConfigurations =
-        (import ./hosts {
-          inherit
-            inputs
-            nixpkgs
-            home-manager
-            ;
-        }).configurations;
+      nixosConfigurations = import ./hosts {
+        inherit
+          inputs
+          nixpkgs
+          home-manager
+          ;
+      };
     };
 }
