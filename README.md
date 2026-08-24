@@ -54,7 +54,6 @@ sudo nixos-rebuild switch --flake .#<your-host>
 Each host is defined in `hosts/<host>/config-modules.nix`:
 
 ```nix
-{ pkgs }:
 rec {
   conf-name = "your-host";              # Config name
   user = "youruser";                     # Username

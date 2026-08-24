@@ -1,6 +1,5 @@
 {
   inputs,
-  pkgs,
   nixpkgs,
   home-manager,
 }:
@@ -16,7 +15,7 @@ let
   hosts = builtins.listToAttrs (
     map (name: {
       name = name;
-      value = import ./${name}/config-modules.nix { inherit pkgs; };
+      value = import ./${name}/config-modules.nix;
     }) hostNames
   );
 

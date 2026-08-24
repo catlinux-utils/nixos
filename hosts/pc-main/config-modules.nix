@@ -1,5 +1,3 @@
-{ pkgs }:
-
 rec {
   conf-name = "pc-main";
   user = "cat";
