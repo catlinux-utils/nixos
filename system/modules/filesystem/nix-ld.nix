@@ -3,7 +3,6 @@
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      lua-language-server
       ## Put here any library that is required when running a package
       ## ...
       ## Uncomment if you want to use the libraries provided by default in the steam distribution
