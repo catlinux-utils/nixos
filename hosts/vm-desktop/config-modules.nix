@@ -20,7 +20,9 @@ rec {
         enable = true;
       };
     };
-    gaming.enable = true;
+    boot = {
+      secureboot.enable = false;
+    };
     home-manager = {
       packages = {
         git = {
