@@ -16,8 +16,8 @@ with lib;
       colorScheme = "dark";
 
       theme = {
-        package = pkgs.materia-theme;
-        name = "Materia-dark-compact";
+        package = pkgs.adwaita-icon-theme;
+        name = "Adwaita";
       };
 
       iconTheme = {

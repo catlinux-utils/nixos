@@ -9,17 +9,15 @@
 with lib;
 
 {
-
   config = mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
 
     home.packages = with pkgs; [
       kdePackages.breeze
-      kdePackages.breeze.qt5 # Needed if you want Qt5 support.
+      kdePackages.breeze.qt5
       kdePackages.breeze-icons
       qtengine
     ];
 
-    # Configure qtengine via xdg.configFile (home-manager equivalent)
     xdg.configFile."qtengine/config.json" = {
       text = builtins.toJSON {
         theme = {
@@ -42,12 +40,20 @@ with lib;
       };
     };
 
-    # Set environment variable for qtengine
-    home.sessionVariables.QT_QPA_PLATFORMTHEME = "qtengine";
-    home.sessionVariables.QT_ICON_THEME = "breeze-dark";
+    # Set environment variables for regular shell sessions
+    home.sessionVariables = {
+      QT_QPA_PLATFORMTHEME = "qtengine";
+      QT_ICON_THEME = "breeze-dark";
+      # Use lib.mkForce to resolve the conflict and include both required paths
+      XDG_DATA_DIRS = lib.mkForce "${pkgs.kdePackages.breeze-icons}/share:${pkgs.networkmanagerapplet}/share:$XDG_DATA_DIRS";
+    };
+
+    # Set environment variables specifically for the systemd user session
     systemd.user.sessionVariables = {
       QT_QPA_PLATFORMTHEME = "qtengine";
       QT_ICON_THEME = "breeze-dark";
+      # Use lib.mkForce here as well to ensure the systemd service gets the combined paths
+      XDG_DATA_DIRS = lib.mkForce "${pkgs.kdePackages.breeze-icons}/share:${pkgs.networkmanagerapplet}/share:$XDG_DATA_DIRS";
     };
 
   };
