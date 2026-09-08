@@ -15,11 +15,11 @@ with lib;
         unzip
         p7zip
         yt-dlp
+        ffmpeg
       ];
     }
 
     (mkIf (vars.modules.desktop-environment.hyprland.enable or false) {
       home.packages = with pkgs; [ lmstudio ];
     })
-  ];
 }
