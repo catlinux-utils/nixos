@@ -6,7 +6,7 @@
 
 {
   home.packages = with pkgs; [
-    # nodejs
+    nodejs
     # yt-dlp
     # ffmpeg
     # python3

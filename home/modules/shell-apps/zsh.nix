@@ -32,6 +32,11 @@
       }
     ];
     initContent = ''
+      # dsh wrapper to expose internals 
+      dsh() {
+        command node --expose-internals "$(readlink -f "$(command which dsh)")" "$@"
+      }
+
       # Ollama zsh completions
       #compdef ollama
 
