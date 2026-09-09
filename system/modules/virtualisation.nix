@@ -14,12 +14,19 @@ with lib;
 
     virtualisation = {
       containers.enable = true;
-      docker = {
+      # docker = {
+      #   enable = true;
+      #   autoPrune.enable = true;
+      # };
+      podman = {
         enable = true;
-        autoPrune.enable = true;
+        dockerCompat = true;
+        dockerSocket.enable = true;
       };
     };
 
+    environment.sessionVariables = {
+      PODMAN_COMPOSE_WARNING_LOGS = "false";
+    };
   };
-
 }
